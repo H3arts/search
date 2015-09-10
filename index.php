@@ -3,19 +3,39 @@
     $google = 'https://www.googto.com/' ; 
 
     $sites=array( 
-        array( 'name' => '谷歌', 'url' => $google.'?q={q}' ), 
-        array( 'name' => '百度', 'url' => 'https://www.baidu.com/s?ie=utf-8&wd={q}'), 
-        array( 'name' => '知乎', 'url' => $google.'?q={q}%20site%3Azhihu.com'), 
-        array( 'name' => 'v2ex', 'url' => $google.'?q={q}%20site%3Av2ex.com'), 
-        array( 'name' => '词典', 'url' => 'http://dict.youdao.com/app/baidu/search?q={q}'), 
-        array( 'name' => 'B站', 'url' => 'http://www.bilibili.com/search?keyword={q}&tids=23'), 
-        array( 'name' => 'A站', 'url' => 'http://www.acfun.tv/search/#query={q};channel=7'), 
-        array( 'name' => '优酷', 'url' => 'http://www.soku.com/search_video/q_{q}'), 
-        array( 'name' => '爱奇艺', 'url' => 'http://so.iqiyi.com/so/q_{q}' ), 
-        array( 'name' => '百度云', 'url' => $google.'?q={q}%20site%3Apan.baidu.com' ), 
-        array( 'name' => '百度视频', 'url' => 'http://v.baidu.com/v?ie=utf-8&word={q}' ),
-        array( 'name' => '谷歌图片', 'url' => 'https://www.googto.com/?tab=image&q={q}'),
-    ); 
+        array( 
+            'name' => '谷歌', 
+            'url' => $google.'?q={q}' 
+        ), 
+        array( 
+            'name' => '百度', 
+            'url' => 'https://www.baidu.com/s?ie=utf-8&wd={q}'
+        ), 
+        array( 
+            'name' => '视频', 
+            'url' => $google.'?q={q}%20site%3Aacfun.tv%20OR%20site%3Abilibili.com'
+        ),
+        array( 
+            'name' => '知乎', 
+            'url' => $google.'?q={q}%20site%3Azhihu.com'
+        ), 
+        array( 
+            'name' => 'v2ex', 
+            'url' => $google.'?q={q}%20site%3Av2ex.com'
+        ), 
+        array( 
+            'name' => '词典', 
+            'url' => 'http://dict.youdao.com/app/baidu/search?q={q}'
+        ), 
+        array( 
+            'name' => '百度云', 
+            'url' => $google.'?q={q}%20site%3Apan.baidu.com' 
+        ), 
+        array( 
+            'name' => '谷歌图片', 
+            'url' => 'https://www.googto.com/?tab=image&q={q}'
+        )
+    );
 
     $q = isset( $_GET[ 'q'] ) ? $_GET[ 'q'] : '' ; 
 
@@ -100,7 +120,7 @@
                         e.preventDefault();
                         go();
                     }
-                    if (e.which === 27 && location.pathname != "/" ) {
+                    if ( e.which === 27 ) {
                         location.href = "/";
                     }
                 });
