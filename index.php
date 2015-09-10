@@ -1,6 +1,18 @@
 <?php 
-
+    
+    // google 镜像域名
     $google = 'https://www.googto.com/' ; 
+    // 视频搜索的域名
+    $video_domain = array(
+        'acfun.tv',
+        'bilibili.com'
+    );
+
+    $video_domain_url = $google.
+                        '?q={q}%20'. 
+                        implode(array_map(function($old){ 
+                            return 'site%3A'.$old;  
+                        }, $video_domain), '%20OR%20' );
 
     $sites=array( 
         array( 
@@ -13,7 +25,7 @@
         ), 
         array( 
             'name' => '视频', 
-            'url' => $google.'?q={q}%20site%3Aacfun.tv%20OR%20site%3Abilibili.com'
+            'url' => $video_domain_url
         ),
         array( 
             'name' => '知乎', 
@@ -54,7 +66,9 @@
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="bookmark" type="image/x-icon" href="/favicon.ico" />
         <title>
-            Search
+            <?php if($q){
+                echo $q .' - '. $sites[$siteid]['name'] . ' - ';
+            } ?>search
         </title>
         <link rel="stylesheet" href="//cdnjscn.b0.upaiyun.com/libs/pure/0.5.0/pure-min.css">
         <style>
