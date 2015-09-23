@@ -24,8 +24,12 @@
             'url' => 'https://www.baidu.com/s?ie=utf-8&wd={q}'
         ), 
         array( 
-            'name' => '视频', 
-            'url' => $video_domain_url
+            'name' => 'A站', 
+            'url' => 'http://www.acfun.tv/search/#query={q};page=1;channel=7'
+        ), 
+        array( 
+            'name' => 'B站', 
+            'url' => 'http://www.bilibili.com/search?keyword={q}&tids=23'
         ),
         array( 
             'name' => '知乎', 
@@ -70,22 +74,27 @@
                 echo $q .' - '. $sites[$siteid]['name'] . ' - ';
             } ?>search
         </title>
-        <link rel="stylesheet" href="//cdnjscn.b0.upaiyun.com/libs/pure/0.5.0/pure-min.css">
         <style>
-            *{margin: 0; padding: 0; } 
+            *{margin: 0; padding: 0; font:14px "Menlo", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", "Microsoft Yahei", sans-serif; outline: none !important; } 
             body{overflow: hidden; height: 100%;min-width: 1000px;  } 
-            #frame { width: 100%; position: fixed; top:60px; border: 0; border:none; z-index: 7; } 
-            #top{background: #eee; width: 100%; text-align: center; position: fixed; top: 0px; height: 60px; z-index: 7; line-height: 60px;  <?php if(!$Searching){ echo "background:none;top:40%;"; } ?> } 
-            #site{ display: inline-block; }
-            #q{ display: inline-block;width:300px; }
-            #go{ display: inline-block; }      
-            .button-secondary { background: rgb(66, 184, 221); color: white; border-radius: 4px; text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); }
+            #frame { width: 100%; position: fixed; top:0; border: 0; border:none; z-index: 7; } 
+            #top{background: #eee; width: 100%; text-align: center; position: fixed; bottom: 0px; height: 59px; z-index: 7; line-height: 59px; box-shadow: 0 0 5px #888;border-top: 1px solid #ccc; 
+                <?php if(!$Searching){ ?>
+                background: none;bottom: 60%;box-shadow: none;border: none;
+                <?php } ?> 
+            } 
+            #site{ display: inline-block; border: 1px solid #d9d9d9;height: 38px;line-height: 38px; box-sizing: content-box;text-align: center;transition:all .5s ease-in-out; }
+            #q{ display: inline-block;width:300px;border: 1px solid #d9d9d9; height: 38px;line-height: 38px; text-indent: 6px;box-sizing: content-box; transition:all .5s ease-in-out; }
+            #site:focus,#q:focus{ border: 1px solid #4d90fe; }
+            #go{ display: inline-block;color:white;background-color: #4d90fe; }      
+            .button { display: inline-block; border: 1px solid #4d90fe; height: 38px;line-height: 38px;text-align: center;background: none;box-sizing: content-box;width:60px;cursor: pointer; }
+            a.button { color:white;background-color: #4d90fe;text-decoration: none; }
         </style>
     </head>
     
     <body>
 
-        <form class="pure-form" method="get" action="?" id="top" autocomplete="off">
+        <form method="get" action="?" id="top" autocomplete="off">
         
             <select name="siteid" id="site">
                 <!-- 选项开始 -->
@@ -100,12 +109,12 @@
                 <!-- 选项结束 -->
             </select>
             <input type="text" id="q" name="q" autocomplete="off" value="<?php echo $q; ?>">
-            <button type="submit" id="go" class="pure-button pure-button-primary">Go</button>
+            <button type="submit" id="go" class="button">Go</button>
 
             <?php if($Searching){ ?>
-                <a class="pure-button button-secondary" href="/">Back</a>       
+                <a class="button" href="/">Back</a>       
             <?php } ?>
-            <a class="pure-button" target="_blank" href="https://github.com/rrkelee/search">Github</a> 
+            <a class="button" target="_blank" href="https://github.com/rrkelee/search">Github</a> 
         </form>
 
         <?php if($Searching){ ?>
