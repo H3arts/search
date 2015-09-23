@@ -2,17 +2,6 @@
     
     // google 镜像域名
     $google = 'https://www.googto.com/' ; 
-    // 视频搜索的域名
-    $video_domain = array(
-        'acfun.tv',
-        'bilibili.com'
-    );
-
-    $video_domain_url = $google.
-                        '?q={q}%20'. 
-                        implode(array_map(function($old){ 
-                            return 'site%3A'.$old;  
-                        }, $video_domain), '%20OR%20' );
 
     $sites=array( 
         array( 
@@ -64,7 +53,6 @@
 ?>
 <!DOCTYPE html>
 <html>
-    
     <head>
         <meta charset="utf-8">
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -91,9 +79,7 @@
             a.button { color:white;background-color: #4d90fe;text-decoration: none; }
         </style>
     </head>
-    
     <body>
-
         <form method="get" action="?" id="top" autocomplete="off">
         
             <select name="siteid" id="site">
@@ -162,5 +148,4 @@
             });
         </script>
     </body>
-
 </html>
